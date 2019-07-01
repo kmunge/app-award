@@ -1,0 +1,52 @@
+{% extends 'projects/base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+{%for projo in project%}
+<div class="container-fluid">
+    <div class="jumbotron" style="background-image:url({{projo.project_image.url}}); height:70vh; margin-top: 6%">
+        <a class="btn btn-default" href="{{projo.url}}" target="_blank" style="float:left"><strong>view live project</strong></a>
+    </div>
+</div> 
+<div class="container">
+    <div class="projectdetails">
+        <p class="ptitle">{{projo.title}}</p>
+        <p><strong>By:</strong><a href="{% url 'find_user' projo.profile %}">{{projo.profile}}</a> </p>
+        <p> <strong>{{projo.date}}</strong></p>
+    </div>
+{% endfor %}
+    <div class="row">
+        <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <div>
+              <p class="commentheader">Comments <i class="far fa-comments"></i></p>
+              <hr>
+              {%if comments%}
+              {%for comment in comments%}
+              <p style="margin-top:5%"> <i class="fas fa-quote-left"></i> {{comment.comment}} <i class="fas fa-quote-right"></i></p>
+              <i>By: {{comment.user}}</i>
+              <br>
+              {%endfor%}
+              {%else%}
+              <p class="alert alert-info">Be the 1st to comment</p>
+              {%endif%}
+            </div>
+            <br><br>
+            {%if user.is_authenticated%}
+            {%for proj in project%}
+            <form class="" action="/review_project/{{proj.id}}/" method="post">
+              {%csrf_token%}
+              {% bootstrap_form form%}
+              <button class="btn btn-outline-default" type="submit" name="button">Add a Comment</button>
+            </form>
+            {%endfor%}
+            {%else%}
+            <a href="/accounts/login/"><button class="btn btn-outline-default" type="submit" name="button">Sign in To leave a comment</button></a>
+            {%endif%}
+          </div>
+    
+          <div class="col-md-2"></div>
+      </div>
+    </div>
+
+{% endblock %}
