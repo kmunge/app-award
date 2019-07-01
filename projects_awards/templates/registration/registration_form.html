@@ -1,0 +1,40 @@
+{%extends "registration/base.html"%}
+{%load static%}
+{% load bootstrap3 %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <!-- Empty div -->
+    <div class="col-md-7" style="padding-top: 10ch">
+      <img src="https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwih0eWb2JPjAhUNA2MBHTVaCosQjRx6BAgBEAU&url=https%3A%2F%2Fthegibraltarmagazine.com%2Fstem-inspirational-awards%2F&psig=AOvVaw28ZX_uHAMgcrT-lJTHiYq3&ust=1562069414997897" alt="" style="width:85%">
+    </div>
+    <div class="col-md-5" style="padding-top:15ch; width: 30%;margin: auto;">
+      {% if form.errors %}
+        <p> Password or Username is incorrect </p>
+      {% endif %}
+      <div class="panel panel-default">
+        <div class="panel-body">
+            <h3 class="">App Awards</h3>
+
+          <form  action="/accounts/register/" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+
+            <div class="form-group">
+              <input type="submit" class="btn btn-info" value="Login">
+            </div>
+          </div>
+        </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+            <small class="muted">
+                Already have an account?<a style="font-size:15px;" href="/accounts/login"> Log in</a>
+            </small>
+            <input type="hidden" name="next" value="{{next}}">
+          </div>
+          </form>
+
+  </div>
+</div>
+
+{% endblock %}
