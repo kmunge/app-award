@@ -1,0 +1,24 @@
+{%extends 'projects/base.html'%} 
+{% block content %}
+<div class="container" style="padding-top:8%">
+    <div class="jumbotron">
+  <div class="row">
+    {% if projects%}
+      <h2 style="text-decoration:underline">Found {{ projects|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found 0 projects for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  {% if projects %}
+    {% for project in projects %}
+    
+    <h3> <a href="">{{project.title}}</a> </h3>
+
+    {% endfor %}
+  {% endif %}
+  
+</div>
+</div>
+{% endblock %}
