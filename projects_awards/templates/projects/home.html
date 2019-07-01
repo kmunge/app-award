@@ -1,0 +1,45 @@
+{% extends 'projects/base.html' %}
+
+{% block content %}
+    {{block.super}}
+   
+    <div class="container">
+        <div class="jumbotron"style="margin-top:100px">
+            <h2 class="newdata"> You have an opportunity to submit your project to be voted and reviewed upon</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12" >
+            {% for project in projects%}
+            
+                <div class="col-md-4" style="padding:1%">
+                    <div class="card">
+                    <img src="{{project.project_image.url}}" class="img-responsive" alt="Image" style=" width:700px;height:300px;padding:0;"alt="">
+                    <div style="margin:2%">
+                        <br>
+                        <p> <strong>{{project.title}} </strong></p>
+                        <hr>
+                        <p style="float:right">{{project.date}}</p>
+                            <p>By: <a href="{% url 'find_user' project.profile %}">{{project.profile}}</a> </p>
+                            <a class="btn btn-lg" href="{% url 'review_project' project.pk%}">Review project</a>
+            
+                    </div>
+                </div>
+            </div>
+                <div class="row">
+                    {% autoescape on %}
+                    {{project.post| safe}}
+                    {% endautoescape %}
+                </div>
+                {% empty %}
+                <div class="row">
+                    <h2 class="text-center">Nothing here!</h2>
+                </div>
+            {% endfor %}
+            </div>   
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
