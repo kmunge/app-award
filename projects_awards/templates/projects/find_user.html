@@ -1,0 +1,77 @@
+{% extends 'projects/base.html' %}
+
+{% block content %}
+<!-- <div class="container" >
+    <div class="row" style="margin-top: 15ch;">
+        {% if profile.user %}
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <img src="{{profile.profile_pic.url}}" alt="Image" class="img-responsive profilepic">
+        </div> 
+        <div class="col-md-7">
+          <ul>
+            <li><p class="userprofile">{{profile.user}}</p></li>
+            <li style="padding-left:5%;"><a class="btn btn-lg" href=""><span class="prof">Follow</span> </a></li>
+        </ul>
+
+          <h4 style="margin-left: 50px"> <strong>{{profile.bio}}</strong> </h4>
+        </div>
+        {% else %}
+        </p>No profile details found</p>
+
+        {% endif %}
+    </div>
+
+ 
+</div> -->
+
+<div class="container-fluid bg-light" >
+    <div class="row" style="margin-top: 15ch;">
+        {% if profile.user %}
+        <div class="col-md-4">
+          <a class="btn btn-lg" style="margin-left:30%; font-size: 100%; font-weight: 600" href="">Follow</a>
+        </div>
+        <div class="col-md-3">
+          <img src="{{profile.profile_pic.url}}" alt="Image" class="img-responsive profilepic" >
+          <br>
+          <p style="margin-left:30%; font-weight: 600; font-size: 200%"; class="userprofile">{{profile.user}}</p>
+          <p style="margin-left:30%; font-weight: 600">{{profile.email}}</p>
+        </div> 
+        <div class="col-md-4">
+    
+          
+        </div>
+        {% else %}
+        </p>No profile description</p>
+
+        {% endif %}
+    </div>
+
+    <div class="container" style="margin-top:50px" >
+
+    <div class="card-body">
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-md-4" style="padding:1%">
+              <div class="card">
+                <img src="{{project.project_image.url}}" class="img-responsive" alt="" style="width:700px;height:300px;">
+                <br>
+                <hr>
+                <div style="margin:3%">
+                  <p style="float:right">{{project.date}}</p>
+                  <p><strong>{{project.title}}</strong></p>
+                </div>
+                
+              </div>
+            </div>
+            
+
+            {% endfor%}
+            </div>
+    </div>
+          
+      </div>
+</div>
+
+
+{% endblock %}
